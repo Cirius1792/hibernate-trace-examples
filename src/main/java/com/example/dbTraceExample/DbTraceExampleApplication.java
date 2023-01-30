@@ -30,7 +30,7 @@ public class DbTraceExampleApplication {
 	public CommandLineRunner demo(UserRepository repository, ContactRepository contactRepository) {
 		return (args) -> {
 			List<Integer> ids = new ArrayList<>();
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 10; i++) {
 				User usr = User.builder().username(UUID.randomUUID().toString())
 						.build();
 				List<Contact> contacts = Arrays.asList(Contact.builder()
@@ -42,7 +42,6 @@ public class DbTraceExampleApplication {
 				contactRepository.saveAll(contacts);
 				ids.add(usr.getId());
 			}
-			//repository.findAll().forEach(el -> log.info("el: {}", el));
 			repository.findAllById(ids).forEach(el -> log.info("el: {}", el));
 		};
 	}
